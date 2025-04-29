@@ -1,6 +1,10 @@
 CLIPort(https://github.com/cliport)をDockerで動かせるようデバッグし、ファインチューニング用のプログラムを作成しました。
 今後も開発を続けるため、変更する可能性があります。変更点は随時ここに記入します。
 
+This repository is a modified version of [CLIport](https://github.com/cliport/cliport), originally released under the Apache License 2.0.  
+The original license is preserved in the LICENSE file.
+
+
 # オリジナルからの変更点
 ・Dockerfile：デバッグをしました。
 
