@@ -1,0 +1,55 @@
+# Fine-tuning
+
+defaults:
+  - config
+
+hydra:
+  run:
+    dir: ${train.train_dir}
+
+dataset:
+  type: 'single'  # 'single' or 'multi'
+  images: True
+  cache: True
+  augment:
+    theta_sigma: 60
+
+train:
+  exp_folder: exps_finetune
+  train_dir: ${root_dir}/${train.exp_folder}/${train.task}-${train.agent}-n${train.n_demos}-finetune
+  data_dir: ${root_dir}/data
+
+  task: stack-block-pyramid-seq-seen-colors
+  agent: cliport
+  n_demos: 100
+  n_steps: 20100  # ファインチューニングなので短めでもOK
+
+  n_rotations: 36
+  batchnorm: False
+  lr: 1e-5  # ファインチューニングは小さめのLearning Rateに！
+
+  attn_stream_fusion_type: 'add'
+  trans_stream_fusion_type: 'conv'
+  lang_fusion_type: 'mult'
+
+  gpu: [0]
+  log: False
+  n_val: 10
+  val_repeats: 1
+  save_steps: [1000, 2000, 5000, 10000, 20000]
+  load_from_last_ckpt: False
+
+wandb:
+  run_name: 'cliport_finetune'
+  logger:
+    entity: cliport
+    project: cliport
+    tags: []
+    group: finetune
+    offline: False
+  saver:
+    upload: False
+    monitor: 'val_loss'
+
+finetune:
+  pretrained_checkpoint: ${root_dir}/cliport_quickstart/multi-language-conditioned-cliport-n1000-train/checkpoints/steps=400000-val_loss=0.00014655.ckpt  # ここに事前学習済みckptパス！
