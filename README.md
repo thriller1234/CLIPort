@@ -24,6 +24,8 @@ windowsのPSにて実行しています！
 下記のどちらかでビルド
 ```
 docker build -t cliport_ws .
+```
+```
 docker build --no-cache -t cliport_ws .
 ```
 
@@ -65,6 +67,8 @@ python3 -m cliport.eval model_task=multi-language-conditioned \
 ### 1.シングルタスク学習
 ```
 python3 -m cliport.demos n=1000 task=stack-block-pyramid-seq-seen-colors mode=train
+```
+```
 python3 -m cliport.train train.task=stack-block-pyramid-seq-seen-colors \
                         train.agent=cliport \
                         train.attn_stream_fusion_type=add \
@@ -78,6 +82,8 @@ python3 -m cliport.train train.task=stack-block-pyramid-seq-seen-colors \
 ### 2.ファインチューニング
 ```
 python3 -m cliport.demos n=1000 task=stack-block-pyramid-seq-seen-colors mode=train
+```
+```
 python3 -m cliport.finetune train.task=stack-block-pyramid-seq-seen-colors \
                            train.agent=cliport \
                            train.attn_stream_fusion_type=add \
@@ -91,6 +97,8 @@ python3 -m cliport.finetune train.task=stack-block-pyramid-seq-seen-colors \
 ### 3.バリデーション
 ```
 python3 -m cliport.demos n=100 task=stack-block-pyramid-seq-seen-colors mode=val
+```
+```
 python3 -m cliport.eval eval_task=stack-block-pyramid-seq-seen-colors \
                        agent=cliport \
                        mode=val \
@@ -103,6 +111,8 @@ python3 -m cliport.eval eval_task=stack-block-pyramid-seq-seen-colors \
 ### 4.テスト
 ```
 python3 -m cliport.demos n=100 task=stack-block-pyramid-seq-seen-colors mode=test
+```
+```
 python3 -m cliport.eval eval_task=stack-block-pyramid-seq-seen-colors \
                        agent=cliport \
                        mode=test \
